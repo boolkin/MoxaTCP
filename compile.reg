@@ -1,0 +1,15 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\.cs\shell\Compile]
+@="Compile C#"
+"Icon"="shell32.dll,80"
+
+[HKEY_CLASSES_ROOT\.cs\shell\Compile\command]
+@="cmd /k C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\csc.exe -nologo \"%1\""
+
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.cs\shell\Compile]
+@="Compile C#"
+"Icon"="shell32.dll,80"
+
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.cs\shell\Compile\command]
+@="cmd /k C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\csc.exe -nologo \"%1\""
