@@ -20,11 +20,11 @@ namespace MoxaTCP {
             try
 			  {
 
-				// вводится адрес и порт устройства МОХА
+				// РІРІРѕРґРёС‚СЃСЏ Р°РґСЂРµСЃ Рё РїРѕСЂС‚ СѓСЃС‚СЂРѕР№СЃС‚РІР° РњРћРҐРђ
 				TcpClient client = new TcpClient("192.168.0.1", 4002);
 				NetworkStream stream = client.GetStream();
 
-				// сразу же делаем первый запрос
+				// СЃСЂР°Р·Сѓ Р¶Рµ РґРµР»Р°РµРј РїРµСЂРІС‹Р№ Р·Р°РїСЂРѕСЃ
 				if (deviceNumb==1) {
 					stream.Write(device1, 0, device1.Length);
 				}
@@ -34,7 +34,7 @@ namespace MoxaTCP {
 					stream.Read(data, 0, data.Length);
 					
 					if (data.Length > 0 && deviceNumb==1){
-						//копируем в общий массив байт
+						//РєРѕРїРёСЂСѓРµРј РІ РѕР±С‰РёР№ РјР°СЃСЃРёРІ Р±Р°Р№С‚
 						for (int i = 0; i<data.Length;i++) {
 							commonBytes[i] = data[i];
 						}
@@ -44,7 +44,7 @@ namespace MoxaTCP {
 					}
 					
 					if (data.Length > 0 && deviceNumb==2){
-						//копируем в общий массив байт
+						//РєРѕРїРёСЂСѓРµРј РІ РѕР±С‰РёР№ РјР°СЃСЃРёРІ Р±Р°Р№С‚
 						for (int i = 0; i<data.Length;i++) {
 							commonBytes[i+9] = data[i];
 						}
@@ -54,11 +54,11 @@ namespace MoxaTCP {
 					}
 					
 					if (data.Length > 0 && deviceNumb==3){
-						//копируем в общий массив байт
+						//РєРѕРїРёСЂСѓРµРј РІ РѕР±С‰РёР№ РјР°СЃСЃРёРІ Р±Р°Р№С‚
 						for (int i = 0; i<data.Length;i++) {
 							commonBytes[i+18] = data[i];
 						}
-						// посылаем общую строку на удаленный сервер по UDP
+						// РїРѕСЃС‹Р»Р°РµРј РѕР±С‰СѓСЋ СЃС‚СЂРѕРєСѓ РЅР° СѓРґР°Р»РµРЅРЅС‹Р№ СЃРµСЂРІРµСЂ РїРѕ UDP
 						UDPSend(commonBytes, "127.0.0.1", 5011);
 						//Thread.Sleep(1000);
 						deviceNumb = 1;
@@ -81,7 +81,7 @@ namespace MoxaTCP {
 			  }
 				catch (IOException e)
 			  {
-				Console.WriteLine("Разрыв соединения: {0}", e);
+				Console.WriteLine("Р Р°Р·СЂС‹РІ СЃРѕРµРґРёРЅРµРЅРёСЏ: {0}", e);
 			  }
 
 			  Console.WriteLine("\n Press Enter to continue...");
@@ -89,11 +89,11 @@ namespace MoxaTCP {
         }
 		
 		private static void UDPSend(byte[] datagram, string IPaddr, int remPort) {
-            // Создаем UdpClient
+            // РЎРѕР·РґР°РµРј UdpClient
             UdpClient sender = new UdpClient();
 			IPAddress remoteIPAddress = IPAddress.Parse(IPaddr);
 			int remotePort = Convert.ToInt16(remPort);
-            // Создаем endPoint по информации об удаленном хосте
+            // РЎРѕР·РґР°РµРј endPoint РїРѕ РёРЅС„РѕСЂРјР°С†РёРё РѕР± СѓРґР°Р»РµРЅРЅРѕРј С…РѕСЃС‚Рµ
             IPEndPoint endPoint = new IPEndPoint(remoteIPAddress, remotePort);
 
             try
@@ -102,11 +102,11 @@ namespace MoxaTCP {
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Возникло исключение: " + ex.ToString() + "\n  " + ex.Message);
+                Console.WriteLine("Р’РѕР·РЅРёРєР»Рѕ РёСЃРєР»СЋС‡РµРЅРёРµ: " + ex.ToString() + "\n  " + ex.Message);
             }
             finally
             {
-                // Закрыть соединение
+                // Р—Р°РєСЂС‹С‚СЊ СЃРѕРµРґРёРЅРµРЅРёРµ
                 sender.Close();
             }
         }
